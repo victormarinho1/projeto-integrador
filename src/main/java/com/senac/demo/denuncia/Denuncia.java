@@ -67,6 +67,6 @@ public class Denuncia {
     private LocalDateTime dataAtualizacao;
 
     @ManyToOne
-    @JoinColumn(name = "id_usuario_responsavel", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_denuncia_usuario"))
+    @JoinColumn(name = "id_usuario_denunciante", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_denuncia_usuario"))
     private Usuario usuarioResponsavel;
 }

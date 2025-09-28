@@ -1,5 +1,6 @@
 package com.senac.demo.denunciaImagem;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.demo.denuncia.Denuncia;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,12 +22,13 @@ public class DenunciaImagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_denuncia", nullable = false, foreignKey = @ForeignKey(name = "fk_imagem_denuncia"))
     private Denuncia denuncia;
 
     @Column(nullable = false, columnDefinition = "TEXT")
-    private String url; // URL da imagem (ou caminho no servidor)
+    private String url;
 
     @Column(columnDefinition = "TEXT")
     private String descricao;

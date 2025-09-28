@@ -1,5 +1,6 @@
 package com.senac.demo.usuario;
 
+import com.senac.demo.core.authentication.RegisterDTO;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@Valid @RequestBody Usuario usuario) {
+    public ResponseEntity<Usuario> criarUsuario(@Valid @RequestBody RegisterDTO usuario) {
         Usuario usuarioCriado = usuarioService.criarUsuario(usuario);
         return new ResponseEntity<>(usuarioCriado, HttpStatus.CREATED);
     }

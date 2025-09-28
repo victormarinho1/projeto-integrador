@@ -1,6 +1,9 @@
 package com.senac.demo.usuario;
 
+import com.senac.demo.core.authentication.RegisterDTO;
+import com.senac.demo.core.exception.EmailAlreadyTakenException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,13 +16,14 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario criarUsuario(Usuario usuario) {
-        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.getEmail());
+    public Usuario criarUsuario(RegisterDTO usuario) {
+        Optional<Usuario> usuarioExistente = usuarioRepository.findByEmail(usuario.email());
         if (usuarioExistente.isPresent()) {
-            throw new RuntimeException("O e-mail já está cadastrado.");
+            throw new EmailAlreadyTakenException();
         }
 
-        return usuarioRepository.save(usuario);
+        return usuarioRepository.save(new Usuario(usuario.nome(),usuario.sobrenome(),
+                usuario.email(),new BCryptPasswordEncoder().encode(usuario.senha())));
     }
 
     public Usuario buscarPorId(Long id) {

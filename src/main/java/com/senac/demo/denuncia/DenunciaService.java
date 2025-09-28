@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class DenunciaService {
@@ -13,6 +15,7 @@ public class DenunciaService {
     private DenunciaRepository denunciaRepository;
 
     public Denuncia criar(Denuncia denuncia) {
+        denuncia.setProtocolo(gerarProtocolo());
         return denunciaRepository.save(denuncia);
     }
 
@@ -48,5 +51,13 @@ public class DenunciaService {
 
     public void deletar(Long id) {
         denunciaRepository.deleteById(id);
+    }
+
+    public  String gerarProtocolo() {
+        String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+
+        String uuidPart = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
+
+        return "DEN-" + timestamp + "-" + uuidPart;
     }
 }
