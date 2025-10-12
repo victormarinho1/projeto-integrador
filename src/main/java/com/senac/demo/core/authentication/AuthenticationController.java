@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@AllArgsConstructor
 @RequestMapping("/api/auth")
 public class AuthenticationController{
 
@@ -26,20 +25,17 @@ public class AuthenticationController{
     @Autowired
     private TokenService tokenService;
 
-    @Autowired
-    private UsuarioService usuarioService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody @Valid LoginDTO loginDTO) {
-        var usernamePassword = new UsernamePasswordAuthenticationToken(loginDTO.email(),loginDTO.senha());
+    public ResponseEntity login(@RequestBody @Valid LoginDTO loginDTO){
+       var usernamePassword = new UsernamePasswordAuthenticationToken(loginDTO.email(),loginDTO.senha());
        var auth = this.authenticationManager.authenticate(usernamePassword);
        var token = tokenService.generateToken((Usuario) auth.getPrincipal());
-        return ResponseEntity.ok(new LoginResponseDTO("token"));
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO registerDTO){
-        this.usuarioService.criarUsuario(registerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

@@ -34,7 +34,7 @@ public class Usuario implements UserDetails {
     @Column(nullable = false, length = 255)
     private String senha;
 
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 50)
     private UsuarioFuncao funcao = UsuarioFuncao.DENUNCIANTE;
 
@@ -54,18 +54,18 @@ public class Usuario implements UserDetails {
         this.sobrenome = sobrenome;
         this.email = email;
         this.senha = senha;
-        //this.funcao = UsuarioFuncao.DENUNCIANTE;
+        this.funcao = UsuarioFuncao.DENUNCIANTE;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-//         if(this.funcao == UsuarioFuncao.ADMIN) {
-//             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
-//         }else if(this.funcao == UsuarioFuncao.CONSELHEIRO) {
-//             return List.of(new SimpleGrantedAuthority("ROLE_CONSELHEIRO"));
-//         }else {
+         if(this.funcao == UsuarioFuncao.ADMIN) {
+             return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"));
+         }else if(this.funcao == UsuarioFuncao.CONSELHEIRO) {
+             return List.of(new SimpleGrantedAuthority("ROLE_CONSELHEIRO"));
+         }else {
              return List.of(new SimpleGrantedAuthority("ROLE_DENUNCIANTE"));
-        // }
+         }
 
 
     }

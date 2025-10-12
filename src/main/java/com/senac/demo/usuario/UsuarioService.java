@@ -3,6 +3,9 @@ package com.senac.demo.usuario;
 import com.senac.demo.core.authentication.RegisterDTO;
 import com.senac.demo.core.exception.EmailAlreadyTakenException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -63,5 +66,10 @@ public class UsuarioService {
 
     public void excluirUsuario(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        return this.usuarioRepository.findByEmail(username).get();
     }
 }
