@@ -15,7 +15,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException {
-        response.setStatus(HttpStatus.FORBIDDEN.value());  // Retorna 403 (Forbidden)
+        response.setStatus(HttpStatus.FORBIDDEN.value());
         response.setContentType("application/json;charset=UTF-8");
         response.getWriter().write("{ \"message\": \"Acesso negado! Você não tem privilégios suficientes para acessar este recurso.\" }");
     }

@@ -33,7 +33,7 @@ public class TokenService {
                     .withClaim("nome",userEncontrado.getNome())
                     .withClaim("sobrenome",userEncontrado.getSobrenome())
                     .withSubject(userEncontrado.getEmail())
-                    .withClaim("role","Admin")
+                    .withClaim("role",user.getFuncao().name())
                     .withExpiresAt(genExpirationDate())
                     .sign(algorithm);
             return token;

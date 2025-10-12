@@ -22,6 +22,9 @@ public class AuthenticationController{
     @Autowired
     private AuthenticationManager authenticationManager;
 
+
+    @Autowired
+    private UsuarioService usuarioService;
     @Autowired
     private TokenService tokenService;
 
@@ -36,6 +39,7 @@ public class AuthenticationController{
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody @Valid RegisterDTO registerDTO){
+        this.usuarioService.criarUsuario(registerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

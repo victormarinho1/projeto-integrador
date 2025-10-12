@@ -1,5 +1,6 @@
 package com.senac.demo.denuncia;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.demo.denunciaImagem.DenunciaImagem;
 import com.senac.demo.usuario.Usuario;
 import lombok.Getter;
@@ -66,6 +67,7 @@ public class Denuncia {
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_usuario_denunciante", referencedColumnName = "id", foreignKey = @ForeignKey(name = "fk_denuncia_usuario"))
     private Usuario usuarioResponsavel;
