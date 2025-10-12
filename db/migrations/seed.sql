@@ -61,17 +61,17 @@ INSERT INTO denuncia (
 -- Inserção de imagens para denúncia 1
 INSERT INTO denuncia_imagem (id_denuncia, url, descricao, data_criacao)
 VALUES
-(1, 'https://example.com/imagens/denuncia1_img1.jpg', 'Buraco no meio da rua', CURRENT_TIMESTAMP),
-(1, 'https://example.com/imagens/denuncia1_img2.jpg', 'Sinalização ausente', CURRENT_TIMESTAMP);
+(1, 'https://example.com/imagens/bamboo-watch.jpg', 'Buraco no meio da rua', CURRENT_TIMESTAMP),
+(1, 'https://example.com/imagens/bamboo-watch.jpg', 'Sinalização ausente', CURRENT_TIMESTAMP);
 
 -- Inserção de imagens para denúncia 2
 INSERT INTO denuncia_imagem (id_denuncia, url, descricao, data_criacao)
 VALUES
-(2, 'https://example.com/imagens/denuncia2_img1.jpg', 'Poste inclinado perigosamente', CURRENT_TIMESTAMP),
-(2, 'https://example.com/imagens/denuncia2_img2.jpg', 'Crianças passando perto do local', CURRENT_TIMESTAMP);
+(2, 'https://example.com/imagens/bamboo-watch.jpg', 'Poste inclinado perigosamente', CURRENT_TIMESTAMP),
+(2, 'https://example.com/imagens/bamboo-watch.jpg', 'Crianças passando perto do local', CURRENT_TIMESTAMP);
 
 -- Inserção de imagens para denúncia 3
 INSERT INTO denuncia_imagem (id_denuncia, url, descricao, data_criacao)
 VALUES
-(3, 'https://example.com/imagens/denuncia3_img1.jpg', 'Rua alagada', CURRENT_TIMESTAMP),
-(3, 'https://example.com/imagens/denuncia3_img2.jpg', 'Água suja próxima a bueiro', CURRENT_TIMESTAMP);
+(3, 'https://example.com/imagens/bamboo-watch.jpg', 'Rua alagada', CURRENT_TIMESTAMP),
+(3, 'https://example.com/imagens/bamboo-watch.jpg', 'Água suja próxima a bueiro', CURRENT_TIMESTAMP);
