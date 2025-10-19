@@ -29,6 +29,17 @@ public class DenunciaService {
                 .orElseThrow(() -> new RuntimeException("Denúncia não encontrada com ID: " + id));
     }
 
+    public List<Denuncia> buscarPorIdUsuarioResponsavel(Long id) {
+        Usuario usuario = usuarioService.buscarPorId(id);
+        return denunciaRepository.findByUsuarioResponsavel(usuario);
+    }
+
+    public List<Denuncia> buscarPorIdUsuarioDenunciante(Long id) {
+        Usuario usuario = usuarioService.buscarPorId(id);
+        return denunciaRepository.findByUsuarioDenunciante(usuario);
+    }
+
+
     public Denuncia buscarPorProtocolo(String protocolo) {
         return denunciaRepository.findByProtocolo(protocolo);
     }

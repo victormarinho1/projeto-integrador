@@ -40,7 +40,7 @@ public class UsuarioService implements UserDetailsService {
     }
 
     public List<Usuario> listarUsuarios(){
-        return usuarioRepository.findAll();
+        return usuarioRepository.findAllByOrderByIdAsc();
     }
 
 

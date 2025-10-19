@@ -25,6 +25,19 @@ public class DenunciaController {
         return ResponseEntity.ok(denuncia);
     }
 
+    @GetMapping("/usuario-responsavel/{id}")
+    public ResponseEntity<List<Denuncia>> buscarPorIdUsuarioResponsavel(@PathVariable Long id) {
+        List<Denuncia> denuncias = denunciaService.buscarPorIdUsuarioResponsavel(id);
+        return ResponseEntity.ok(denuncias);
+    }
+
+    @GetMapping("/usuario-denunciante/{id}")
+    public ResponseEntity<List<Denuncia>> buscarPorIdUsuarioDenunciante(@PathVariable Long id) {
+        List<Denuncia> denuncias = denunciaService.buscarPorIdUsuarioDenunciante(id);
+        return ResponseEntity.ok(denuncias);
+    }
+
+
     @GetMapping("/protocolo/{protocolo}")
     public ResponseEntity<Denuncia> buscarPorProtocolo(@PathVariable String protocolo) {
         Denuncia denuncia = denunciaService.buscarPorProtocolo(protocolo);
