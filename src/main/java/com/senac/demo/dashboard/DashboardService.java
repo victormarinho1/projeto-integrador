@@ -5,6 +5,8 @@ import com.senac.demo.denuncia.StatusDenuncia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DashboardService {
 
@@ -18,5 +20,9 @@ public class DashboardService {
       int total_concluida =  this.denunciaService.buscarPorStatus(StatusDenuncia.CONCLUIDA).size();
 
       return new ContagemStatusDenunciaDTO(total_nova,total_em_andamento,total_concluida);
+    }
+
+    public List<DenunciasPorUsuarioDTO> getDenunciasAtendidas() {
+        return denunciaService.getDenunciasAtendidas();
     }
 }

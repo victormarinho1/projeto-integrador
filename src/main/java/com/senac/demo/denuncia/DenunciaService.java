@@ -1,5 +1,6 @@
 package com.senac.demo.denuncia;
 
+import com.senac.demo.dashboard.DenunciasPorUsuarioDTO;
 import com.senac.demo.usuario.Usuario;
 import com.senac.demo.usuario.UsuarioService;
 import jdk.jshell.Snippet;
@@ -89,6 +90,10 @@ public class DenunciaService {
 
     public List<Denuncia> buscarPorStatus(StatusDenuncia status){
         return this.denunciaRepository.findByStatus(status);
+    }
+
+    public List<DenunciasPorUsuarioDTO> getDenunciasAtendidas() {
+        return denunciaRepository.countDenunciasAtendidasByUsuario();
     }
 }
 
