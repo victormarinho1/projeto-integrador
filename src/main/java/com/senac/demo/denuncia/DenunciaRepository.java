@@ -15,4 +15,5 @@ public interface DenunciaRepository extends JpaRepository<Denuncia, Long> {
 
     List<Denuncia> findByUsuarioDenunciante(Usuario denunciante);
 
+    List<Denuncia> findByStatus(StatusDenuncia statusDenuncia);
 }

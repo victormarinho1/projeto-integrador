@@ -2,6 +2,7 @@ package com.senac.demo.denuncia;
 
 import com.senac.demo.usuario.Usuario;
 import com.senac.demo.usuario.UsuarioService;
+import jdk.jshell.Snippet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -84,6 +85,10 @@ public class DenunciaService {
         denuncia.setUsuarioResponsavel(usuario);
         denuncia.setStatus(StatusDenuncia.EM_ANDAMENTO);
         return denunciaRepository.save(denuncia);
+    }
+
+    public List<Denuncia> buscarPorStatus(StatusDenuncia status){
+        return this.denunciaRepository.findByStatus(status);
     }
 }
 

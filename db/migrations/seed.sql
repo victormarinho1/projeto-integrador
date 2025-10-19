@@ -44,8 +44,22 @@ CREATE TABLE denuncia_imagem (
 
 -- Inserção de usuários
 INSERT INTO usuario (nome, sobrenome, email, senha, funcao, ativo, data_criacao)
-VALUES 
+VALUES
 ('Admin', '', 'admin@example.com', '$2a$10$cw1zoZM0DUaPVbYVPUqiEu9UEqmmXb4Ybga4Ca2ot1XnSileJF37S', 'ADMIN', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro2', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro3', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro4', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro5', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro6', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro7', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro8', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro9', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro10', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro11', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
+('Conselheiro', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
 ('Conselheiro', '', 'conselheiro@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
 ('Denunciante', '', 'denunciante@example.com', '$2a$10$xYVgLekWvJjsVzkFqHdLMutQz4K0rjCsJt6Z1eH5TRfXOivYeQ9Bm', 'DENUNCIANTE', TRUE, CURRENT_TIMESTAMP);
 
