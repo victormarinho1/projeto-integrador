@@ -48,4 +48,13 @@ public class DenunciaController {
         denunciaService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PatchMapping("/{id}/atender")
+    public ResponseEntity<Denuncia> atenderDenuncia(@PathVariable Long id) {
+
+        Denuncia denunciaAtendida = denunciaService.atenderDenuncia(id);
+
+        return ResponseEntity.ok(denunciaAtendida);
+    }
+
 }

@@ -79,4 +79,9 @@ public class Usuario implements UserDetails {
     public String getUsername() {
         return this.email;
     }
+
+    @Override
+    public boolean isEnabled(){
+        return this.ativo;
+    }
 }

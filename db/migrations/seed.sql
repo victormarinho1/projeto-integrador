@@ -26,7 +26,9 @@ CREATE TABLE denuncia (
     data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     data_atualizacao TIMESTAMP,
     id_usuario_denunciante BIGINT,
-    FOREIGN KEY (id_usuario_denunciante) REFERENCES usuario(id) ON DELETE SET NULL
+    id_usuario_responsavel BIGINT,
+    FOREIGN KEY (id_usuario_denunciante) REFERENCES usuario(id) ON DELETE SET NULL,
+    FOREIGN KEY (id_usuario_responsavel) REFERENCES usuario(id) ON DELETE SET NULL
 );
 
 
@@ -61,17 +63,17 @@ INSERT INTO denuncia (
 -- Inserção de imagens para denúncia 1
 INSERT INTO denuncia_imagem (id_denuncia, url, descricao, data_criacao)
 VALUES
-(1, 'https://example.com/imagens/bamboo-watch.jpg', 'Buraco no meio da rua', CURRENT_TIMESTAMP),
-(1, 'https://example.com/imagens/bamboo-watch.jpg', 'Sinalização ausente', CURRENT_TIMESTAMP);
+(1, 'bamboo-watch.jpg', 'Buraco no meio da rua', CURRENT_TIMESTAMP),
+(1, 'bamboo-watch.jpg', 'Sinalização ausente', CURRENT_TIMESTAMP);
 
 -- Inserção de imagens para denúncia 2
 INSERT INTO denuncia_imagem (id_denuncia, url, descricao, data_criacao)
 VALUES
-(2, 'https://example.com/imagens/bamboo-watch.jpg', 'Poste inclinado perigosamente', CURRENT_TIMESTAMP),
-(2, 'https://example.com/imagens/bamboo-watch.jpg', 'Crianças passando perto do local', CURRENT_TIMESTAMP);
+(2, 'bamboo-watch.jpg', 'Poste inclinado perigosamente', CURRENT_TIMESTAMP),
+(2, 'bamboo-watch.jpg', 'Crianças passando perto do local', CURRENT_TIMESTAMP);
 
 -- Inserção de imagens para denúncia 3
 INSERT INTO denuncia_imagem (id_denuncia, url, descricao, data_criacao)
 VALUES
-(3, 'https://example.com/imagens/bamboo-watch.jpg', 'Rua alagada', CURRENT_TIMESTAMP),
-(3, 'https://example.com/imagens/bamboo-watch.jpg', 'Água suja próxima a bueiro', CURRENT_TIMESTAMP);
+(3, 'bamboo-watch.jpg', 'Rua alagada', CURRENT_TIMESTAMP),
+(3, 'bamboo-watch.jpg', 'Água suja próxima a bueiro', CURRENT_TIMESTAMP);

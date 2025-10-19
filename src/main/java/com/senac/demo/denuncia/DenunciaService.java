@@ -1,6 +1,9 @@
 package com.senac.demo.denuncia;
 
+import com.senac.demo.usuario.Usuario;
+import com.senac.demo.usuario.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,6 +17,8 @@ public class DenunciaService {
     @Autowired
     private DenunciaRepository denunciaRepository;
 
+    @Autowired
+    private UsuarioService usuarioService;
     public Denuncia criar(Denuncia denuncia) {
         denuncia.setProtocolo(gerarProtocolo());
         return denunciaRepository.save(denuncia);
@@ -53,11 +58,22 @@ public class DenunciaService {
         denunciaRepository.deleteById(id);
     }
 
-    public  String gerarProtocolo() {
+    public String gerarProtocolo() {
         String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
 
         String uuidPart = UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
         return "DEN-" + timestamp + "-" + uuidPart;
     }
+
+    public Denuncia atenderDenuncia(Long id){
+        Denuncia denuncia = buscarPorId(id);
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        Usuario usuario = this.usuarioService.buscarPorEmail(username);
+        denuncia.setUsuarioResponsavel(usuario);
+        denuncia.setStatus(StatusDenuncia.EM_ANDAMENTO);
+        return denunciaRepository.save(denuncia);
+    }
 }
+
+
