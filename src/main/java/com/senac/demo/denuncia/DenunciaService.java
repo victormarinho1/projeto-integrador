@@ -1,6 +1,8 @@
 package com.senac.demo.denuncia;
 
 import com.senac.demo.dashboard.DenunciasPorUsuarioDTO;
+import com.senac.demo.denunciaImagem.DenunciaImagem;
+import com.senac.demo.denunciaImagem.DenunciaImagemRepository;
 import com.senac.demo.usuario.Usuario;
 import com.senac.demo.usuario.UsuarioService;
 import jdk.jshell.Snippet;
@@ -20,11 +22,37 @@ public class DenunciaService {
     private DenunciaRepository denunciaRepository;
 
     @Autowired
+    private DenunciaImagemRepository denunciaImagemRepository;
+
+    @Autowired
     private UsuarioService usuarioService;
+
     public Denuncia criar(Denuncia denuncia) {
+        // Gerar protocolo para a denúncia
         denuncia.setProtocolo(gerarProtocolo());
-        return denunciaRepository.save(denuncia);
+
+        // Obter a lista de imagens associadas à denúncia
+        List<DenunciaImagem> denunciaImagems = denuncia.getImagens();
+
+        // Remover as imagens temporariamente, para salvar a denúncia primeiro
+        denuncia.setImagens(null);
+
+        // Salvar a denúncia
+        Denuncia denunciaSalva = denunciaRepository.save(denuncia);
+
+        // Associe a denúncia salva às imagens
+        if (denunciaImagems != null) {
+            denunciaImagems.forEach(imagem -> imagem.setDenuncia(denunciaSalva)); // Associa a denúncia salva com as imagens
+
+            // Agora, salve as imagens associadas
+            denunciaSalva.setImagens(denunciaImagems);
+            denunciaImagems.forEach(imagem -> denunciaImagemRepository.save(imagem)); // Salve cada imagem associada à denúncia
+        }
+
+        // Salve novamente a denúncia, já com as imagens associadas
+        return denunciaRepository.save(denunciaSalva);
     }
+
 
     public Denuncia buscarPorId(Long id) {
         return denunciaRepository.findById(id)
@@ -95,6 +123,8 @@ public class DenunciaService {
     public List<DenunciasPorUsuarioDTO> getDenunciasAtendidas() {
         return denunciaRepository.countDenunciasAtendidasByUsuario();
     }
+
+
 }
 
 
