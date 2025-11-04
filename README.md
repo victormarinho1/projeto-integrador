@@ -12,13 +12,13 @@ Este repositório contém o Trabalho de Conclusão de Curso (Projeto Integrador)
 
 O software tem como objetivo principal oferecer uma **plataforma digital acessível e segura para a denúncia de casos de trabalho infantil**, buscando fortalecer a comunicação entre a população e os órgãos responsáveis (como o Conselho Tutelar e o Ministério Público do Trabalho).
 
-A aplicação permite que qualquer cidadão registre uma denúncia de forma anônima, informando a localização, descrição do caso e, opcionalmente, anexando evidências (fotos ou vídeos), agilizando o processo e garantindo o sigilo do denunciante.
+A aplicação permite que qualquer cidadão registre uma denúncia de forma anônima, informando a localização, descrição do caso e, opcionalmente, anexando fotos, agilizando o processo e garantindo o sigilo do denunciante.
 
 ---
 
 ## ✨ Funcionalidades Principais
 
-O sistema é dividido em duas frentes principais: o portal público para denúncias e o painel administrativo para gestão dos casos.
+O sistema é projetado com três níveis de acesso distintos:
 
 ### Portal do Cidadão (Denunciante)
 * **Registro de Denúncia Anônima:** Formulário simplificado para envio de denúncias sem a necessidade de identificação.
@@ -32,7 +32,7 @@ Interface privada destinada ao profissional da rede de proteção (o **Conselhei
 
 * **Atendimento e Encaminhamento:** A função principal é **atender** as denúncias recebidas (analisando, priorizando) e **enviar alguém para a resolução** (encaminhar uma equipe de campo ou um responsável).
 * **Análise de Informações:** Acesso seguro aos detalhes, mapa e evidências de cada caso para embasar a tomada de decisão.
-* **Gestão de Status:** Ferramentas para atualizar o andamento do caso (Ex: "Nova", "Em Verificação de Campo", "Resolvido", "Inválido").
+* **Gestão de Status:** Ferramentas para atualizar o andamento do caso (Ex: "Nova", "Em Andamento", "Concluída")..
 * **Registro de Histórico:** Inclusão de observações internas e relatórios da visita de campo.
 
 ### 3. Painel do Administrador (Admin)
