@@ -56,7 +56,7 @@ VALUES
 ('Conselheiro8', '', 'conselheiro8@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
 ('Conselheiro9', '', 'conselheiro9@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
 ('Conselheiro10', '', 'conselheir10o@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP),
-('Conselheiro11', '', 'conselheiro11@example.com', '$2a$10$MzxK.ZmoyHBUHluXWbsIZOKBC/yK20tZPQldtJSaUO6VT4bQAeiMi', 'CONSELHEIRO', TRUE, CURRENT_TIMESTAMP);
+('Denunciante', '', 'denunciante@example.com', '$2a$10$OAkqGqS5Mc5plc9xAEoDAeFeMVV1T5ZImNhxy09KlfENO7HhriIUq', 'DENUNCIANTE', TRUE, CURRENT_TIMESTAMP);
 
 
 -- Inserção de denúncias
