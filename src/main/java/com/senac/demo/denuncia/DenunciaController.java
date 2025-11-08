@@ -2,13 +2,21 @@ package com.senac.demo.denuncia;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/denuncias")
 public class DenunciaController {
+    private final String uploadDir = "src/main/resources/assets/images/";
+
 
     @Autowired
     private DenunciaService denunciaService;
@@ -68,6 +76,39 @@ public class DenunciaController {
         Denuncia denunciaAtendida = denunciaService.atenderDenuncia(id);
 
         return ResponseEntity.ok(denunciaAtendida);
+    }
+
+
+
+
+
+    @PostMapping("/image")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        // Verificar se o arquivo foi enviado
+        if (file.isEmpty()) {
+            return ResponseEntity.badRequest().body("Por favor, envie um arquivo.");
+        }
+
+        try {
+            // Obter o nome original do arquivo
+            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+            // Verifique se o nome do arquivo é válido
+            if (fileName.contains("..")) {
+                return ResponseEntity.badRequest().body("Nome de arquivo inválido.");
+            }
+
+            // Crie o diretório de destino, se não existir
+            Path path = Paths.get(uploadDir + fileName);
+            Files.createDirectories(path.getParent());  // cria a pasta assets/images
+
+            // Salve o arquivo no diretório
+            file.transferTo(path);
+
+            return ResponseEntity.ok("Imagem salva com sucesso: " + path.toString());
+        } catch (IOException e) {
+            return ResponseEntity.status(500).body("Erro ao salvar o arquivo: " + e.getMessage());
+        }
     }
 
 }
