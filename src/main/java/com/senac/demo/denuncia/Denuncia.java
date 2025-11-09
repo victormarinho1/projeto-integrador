@@ -59,8 +59,8 @@ public class Denuncia {
     @Column(precision = 11, scale = 8)
     private BigDecimal longitude;
 
-    @Column(nullable = false)
-    private Boolean equipe_enviada = (Boolean) true;
+    @Column(nullable = true)
+    private Boolean equipe_enviada;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 100)

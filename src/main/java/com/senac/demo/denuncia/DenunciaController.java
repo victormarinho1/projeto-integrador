@@ -78,6 +78,12 @@ public class DenunciaController {
         return ResponseEntity.ok(denunciaAtendida);
     }
 
+    @PatchMapping("/{protocolo}/prioridade")
+    public ResponseEntity<Denuncia> definirPrioridade(@PathVariable String protocolo, @RequestBody PrioridadeDTO dto){
+        Denuncia denuncia = denunciaService.definirPrioridade(dto,protocolo);
+        return ResponseEntity.ok(denuncia);
+    }
+
 
 
 

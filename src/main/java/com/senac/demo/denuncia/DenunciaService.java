@@ -78,6 +78,12 @@ public class DenunciaService {
         return denunciaRepository.findAll();
     }
 
+    public Denuncia definirPrioridade(PrioridadeDTO prioridade, String protocolo){
+        Denuncia denuncia = buscarPorProtocolo(protocolo);
+        denuncia.setPrioridade(prioridade.prioridade());
+        return denunciaRepository.save(denuncia);
+    }
+
     public Denuncia atualizar(Long id, Denuncia novaDenuncia) {
         Denuncia denuncia = buscarPorId(id);
         denuncia.setDescricao(novaDenuncia.getDescricao());
