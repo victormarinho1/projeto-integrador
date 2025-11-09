@@ -17,6 +17,8 @@ CREATE TABLE denuncia (
                           descricao TEXT NOT NULL,
                           endereco_completo TEXT,
                           cidade VARCHAR(100),
+                          rua VARCHAR(100),
+                          bairro VARCHAR(100),
                           estado CHAR(2),
                           cep VARCHAR(9),
                           latitude DECIMAL(10, 8),
