@@ -70,6 +70,9 @@ public class Denuncia {
     @Column(length = 100)
     private PrioridadeDenuncia prioridade = PrioridadeDenuncia.SEM_ANALIZE;
 
+    @Column(columnDefinition = "TEXT")
+    private String devolutiva;
+
     @Column(name = "data_criacao", nullable = false, updatable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();
 

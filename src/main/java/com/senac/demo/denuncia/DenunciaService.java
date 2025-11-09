@@ -130,6 +130,18 @@ public class DenunciaService {
         return denunciaRepository.countDenunciasAtendidasByUsuario();
     }
 
+    public void enviarEquipe(Long id){
+        Denuncia denuncia = buscarPorId(id);
+        denuncia.setEquipe_enviada(!denuncia.getEquipe_enviada());
+        this.denunciaRepository.save(denuncia);
+    }
+
+    public Denuncia finalizarAtendimento(Long id, DevolutivaDTO devolutiva){
+        Denuncia denuncia = buscarPorId(id);
+        denuncia.setDevolutiva(devolutiva.devolutiva());
+        denuncia.setStatus(StatusDenuncia.CONCLUIDA);
+       return this.denunciaRepository.save(denuncia);
+    }
 
 }
 

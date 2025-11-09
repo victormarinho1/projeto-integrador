@@ -27,6 +27,7 @@ CREATE TABLE denuncia (
                           prioridade VARCHAR(100),
                           data_criacao TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                           data_atualizacao TIMESTAMP,
+                          devolutiva TEXT,
                           equipe_enviada BOOLEAN DEFAULT FALSE,
                           id_usuario_denunciante BIGINT,
                           id_usuario_responsavel BIGINT,

@@ -1,6 +1,7 @@
 package com.senac.demo.denuncia;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -85,7 +86,11 @@ public class DenunciaController {
     }
 
 
-
+    @PatchMapping("/{id}/finalizar-atendimento")
+    public ResponseEntity<Denuncia> finalizarAtendimento(@PathVariable Long id, @RequestBody DevolutivaDTO dto){
+        Denuncia denuncia = denunciaService.finalizarAtendimento(id,dto);
+        return ResponseEntity.ok(denuncia);
+    }
 
 
     @PostMapping("/image")
@@ -131,4 +136,9 @@ public class DenunciaController {
         return ResponseEntity.ok(message.toString());
     }
 
+    @GetMapping("/{id}/enviar-equipe")
+    public ResponseEntity<Void> enviarEquipe(@PathVariable Long id) {
+        denunciaService.enviarEquipe(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
