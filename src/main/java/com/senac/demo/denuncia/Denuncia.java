@@ -41,6 +41,12 @@ public class Denuncia {
     @Column(length = 100)
     private String cidade;
 
+    @Column(length = 100)
+    private String rua;
+
+    @Column(length = 100)
+    private String bairro;
+
     @Column(length = 2)
     private String estado;
 
@@ -53,13 +59,16 @@ public class Denuncia {
     @Column(precision = 11, scale = 8)
     private BigDecimal longitude;
 
+    @Column(nullable = false)
+    private Boolean equipe_enviada = (Boolean) true;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 100)
     private StatusDenuncia status = StatusDenuncia.NOVA;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 100)
-    private PrioridadeDenuncia prioridade = PrioridadeDenuncia.MEDIA;
+    @Column(length = 100)
+    private PrioridadeDenuncia prioridade = PrioridadeDenuncia.SEM_ANALIZE;
 
     @Column(name = "data_criacao", nullable = false, updatable = false)
     private LocalDateTime dataCriacao = LocalDateTime.now();

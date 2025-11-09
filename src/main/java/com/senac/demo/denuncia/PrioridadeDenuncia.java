@@ -4,5 +4,6 @@ public enum PrioridadeDenuncia {
     BAIXA,
     MEDIA,
     ALTA,
-    CRITICA
+    CRITICA,
+    SEM_ANALIZE
 }
