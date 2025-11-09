@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/denuncias")
 public class DenunciaController {
-    private final String uploadDir = "src/main/resources/assets/images/";
+    private final String uploadDir = "src/main/resources/static/images/";
 
 
     @Autowired
@@ -83,32 +83,46 @@ public class DenunciaController {
 
 
     @PostMapping("/image")
-    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-        // Verificar se o arquivo foi enviado
-        if (file.isEmpty()) {
-            return ResponseEntity.badRequest().body("Por favor, envie um arquivo.");
+    public ResponseEntity<String> uploadImages(@RequestParam("files") List<MultipartFile> files) {
+        // Verificar se a lista de arquivos está vazia
+        if (files.isEmpty()) {
+            return ResponseEntity.badRequest().body("Por favor, envie ao menos um arquivo.");
         }
 
-        try {
-            // Obter o nome original do arquivo
-            String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+        StringBuilder message = new StringBuilder();
 
-            // Verifique se o nome do arquivo é válido
-            if (fileName.contains("..")) {
-                return ResponseEntity.badRequest().body("Nome de arquivo inválido.");
+        // Processa cada arquivo da lista
+        for (MultipartFile file : files) {
+            try {
+                // Verificar se o arquivo foi enviado corretamente
+                if (file.isEmpty()) {
+                    continue;  // Se algum arquivo estiver vazio, ignora e continua
+                }
+
+                // Obter o nome original do arquivo
+                String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+
+                // Verificar se o nome do arquivo é válido
+                if (fileName.contains("..")) {
+                    message.append("Nome de arquivo inválido: " + fileName + "\n");
+                    continue;
+                }
+
+                // Crie o diretório de destino, se não existir
+                Path path = Paths.get(uploadDir + fileName);
+                Files.createDirectories(path.getParent());  // Cria a pasta assets/images
+
+                // Salve o arquivo no diretório
+                file.transferTo(path);
+
+                message.append("Imagem salva com sucesso: " + path.toString() + "\n");
+
+            } catch (IOException e) {
+                message.append("Erro ao salvar o arquivo: " + e.getMessage() + "\n");
             }
-
-            // Crie o diretório de destino, se não existir
-            Path path = Paths.get(uploadDir + fileName);
-            Files.createDirectories(path.getParent());  // cria a pasta assets/images
-
-            // Salve o arquivo no diretório
-            file.transferTo(path);
-
-            return ResponseEntity.ok("Imagem salva com sucesso: " + path.toString());
-        } catch (IOException e) {
-            return ResponseEntity.status(500).body("Erro ao salvar o arquivo: " + e.getMessage());
         }
+
+        return ResponseEntity.ok(message.toString());
     }
 
 }
