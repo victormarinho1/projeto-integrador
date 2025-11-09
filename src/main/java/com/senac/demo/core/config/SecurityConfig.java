@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/images/**").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/denuncias/image").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/denuncias").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/denuncias/protocolo/{id}").permitAll()
                         .requestMatchers(AUTH_WHITELIST).permitAll()
                         .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
