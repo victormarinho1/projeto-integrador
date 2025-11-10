@@ -11,6 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Configura o Spring para servir imagens do diretório /static/images/
         registry.addResourceHandler("/images/**")
-                .addResourceLocations("classpath:/static/images/");
+                .addResourceLocations("file:/app/uploads/images/");
     }
 }

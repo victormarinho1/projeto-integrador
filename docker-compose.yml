@@ -23,6 +23,8 @@ services:
       - spring.web.resources.add-mappings=false
     networks:
       - projeto_integrador
+    volumes:
+      - ./uploads:/app/uploads
 
   postgres-db:
     image: postgres:latest

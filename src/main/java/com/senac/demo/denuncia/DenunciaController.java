@@ -16,8 +16,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/denuncias")
 public class DenunciaController {
-    private final String uploadDir = "src/main/resources/static/images/";
 
+    // ✅ Caminho absoluto dentro do container (montável via volume)
+    private final String uploadDir = "/app/uploads/images/";
 
     @Autowired
     private DenunciaService denunciaService;
@@ -46,7 +47,6 @@ public class DenunciaController {
         return ResponseEntity.ok(denuncias);
     }
 
-
     @GetMapping("/protocolo/{protocolo}")
     public ResponseEntity<Denuncia> buscarPorProtocolo(@PathVariable String protocolo) {
         Denuncia denuncia = denunciaService.buscarPorProtocolo(protocolo);
@@ -73,63 +73,55 @@ public class DenunciaController {
 
     @PatchMapping("/{id}/atender")
     public ResponseEntity<Denuncia> atenderDenuncia(@PathVariable Long id) {
-
         Denuncia denunciaAtendida = denunciaService.atenderDenuncia(id);
-
         return ResponseEntity.ok(denunciaAtendida);
     }
 
     @PatchMapping("/{protocolo}/prioridade")
-    public ResponseEntity<Denuncia> definirPrioridade(@PathVariable String protocolo, @RequestBody PrioridadeDTO dto){
-        Denuncia denuncia = denunciaService.definirPrioridade(dto,protocolo);
+    public ResponseEntity<Denuncia> definirPrioridade(@PathVariable String protocolo, @RequestBody PrioridadeDTO dto) {
+        Denuncia denuncia = denunciaService.definirPrioridade(dto, protocolo);
         return ResponseEntity.ok(denuncia);
     }
-
 
     @PatchMapping("/{id}/finalizar-atendimento")
-    public ResponseEntity<Denuncia> finalizarAtendimento(@PathVariable Long id, @RequestBody DevolutivaDTO dto){
-        Denuncia denuncia = denunciaService.finalizarAtendimento(id,dto);
+    public ResponseEntity<Denuncia> finalizarAtendimento(@PathVariable Long id, @RequestBody DevolutivaDTO dto) {
+        Denuncia denuncia = denunciaService.finalizarAtendimento(id, dto);
         return ResponseEntity.ok(denuncia);
     }
 
-
+    // ✅ Upload adaptado
     @PostMapping("/image")
     public ResponseEntity<String> uploadImages(@RequestParam("files") List<MultipartFile> files) {
-        // Verificar se a lista de arquivos está vazia
         if (files.isEmpty()) {
             return ResponseEntity.badRequest().body("Por favor, envie ao menos um arquivo.");
         }
 
         StringBuilder message = new StringBuilder();
 
-        // Processa cada arquivo da lista
         for (MultipartFile file : files) {
             try {
-                // Verificar se o arquivo foi enviado corretamente
-                if (file.isEmpty()) {
-                    continue;  // Se algum arquivo estiver vazio, ignora e continua
-                }
+                if (file.isEmpty()) continue;
 
-                // Obter o nome original do arquivo
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-
-                // Verificar se o nome do arquivo é válido
                 if (fileName.contains("..")) {
-                    message.append("Nome de arquivo inválido: " + fileName + "\n");
+                    message.append("Nome de arquivo inválido: ").append(fileName).append("\n");
                     continue;
                 }
 
-                // Crie o diretório de destino, se não existir
-                Path path = Paths.get(uploadDir + fileName);
-                Files.createDirectories(path.getParent());  // Cria a pasta assets/images
+                // ✅ Cria o diretório de destino se não existir
+                Path directoryPath = Paths.get(uploadDir);
+                Files.createDirectories(directoryPath);
 
-                // Salve o arquivo no diretório
-                file.transferTo(path);
+                // ✅ Caminho completo do arquivo
+                Path filePath = directoryPath.resolve(fileName);
 
-                message.append("Imagem salva com sucesso: " + path.toString() + "\n");
+                // ✅ Salva o arquivo
+                file.transferTo(filePath.toFile());
+
+                message.append("Imagem salva com sucesso: ").append(filePath).append("\n");
 
             } catch (IOException e) {
-                message.append("Erro ao salvar o arquivo: " + e.getMessage() + "\n");
+                message.append("Erro ao salvar o arquivo: ").append(e.getMessage()).append("\n");
             }
         }
 
