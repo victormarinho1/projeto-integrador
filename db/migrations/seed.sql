@@ -65,12 +65,17 @@ VALUES
 
 -- Inserção de denúncias
 INSERT INTO denuncia (
-    protocolo, descricao, endereco_completo, cidade, estado, cep, latitude, longitude,
-    status, prioridade, data_criacao, id_usuario_denunciante
+    protocolo, descricao, endereco_completo, rua, bairro, cidade, estado, cep, latitude, longitude,
+    status, prioridade, data_criacao
 ) VALUES
-      ('DEN-20251109131750-D63450B8', 'Rua esburacada, perigosa para pedestres.', 'Rua das Laranjeiras, 123', 'Rio de Janeiro', 'RJ', '22231-000', -22.906847, -43.172896, 'EM_ANDAMENTO', 'MEDIA', CURRENT_TIMESTAMP, 1),
-      ('DEN-20251109132357-2EDAF644', 'Poste com risco de queda próximo à escola.', 'Av. Brasil, 456', 'São Paulo', 'SP', '03010-000', -23.550520, -46.633308, 'EM_ANDAMENTO', 'ALTA', CURRENT_TIMESTAMP, 2),
-      ('DEN-20251109132830-F42F2879', 'Bueiro entupido causando alagamento.', 'Rua Água Verde, 789', 'Curitiba', 'PR', '80020-010', -25.428954, -49.267137, 'CONCLUIDA', 'BAIXA', CURRENT_TIMESTAMP, 3);
+      ('DEN-20251109131750-D63450B8', 'Rua esburacada, perigosa para pedestres.', 'Rua das Laranjeiras, Centro, Rio de Janeiro, RJ, 22231-000', 'Rua das Laranjeiras', 'Centro', 'Rio de Janeiro', 'RJ', '22231-000', -22.906847, -43.172896, 'EM_ANDAMENTO', 'MEDIA', CURRENT_TIMESTAMP),
+      ('DEN-20251109132357-2EDAF644', 'Poste com risco de queda próximo à escola.', 'Av. Brasil, 456, Bairro da Lapa, São Paulo, SP, 03010-000', 'Av. Brasil', 'Bairro da Lapa', 'São Paulo', 'SP', '03010-000', -23.550520, -46.633308, 'EM_ANDAMENTO', 'ALTA', CURRENT_TIMESTAMP),
+      ('DEN-20251109132830-F42F2879', 'Bueiro entupido causando alagamento.', 'Rua Água Verde, 789, Bairro Santa Felicidade, Curitiba, PR, 80020-010', 'Rua Água Verde', 'Bairro Santa Felicidade', 'Curitiba', 'PR', '80020-010', -25.428954, -49.267137, 'CONCLUIDA', 'BAIXA', CURRENT_TIMESTAMP),
+      ('DEN-20251109133000-8F10A9C0', 'Crianças trabalhando como vendedores ambulantes em ponto de ônibus.', 'Rua das Palmeiras, 1200, Centro, Salvador, BA, 40000-000', 'Rua das Palmeiras', 'Centro', 'Salvador', 'BA', '40000-000', -12.971408, -38.501197, 'EM_ANDAMENTO', 'ALTA', CURRENT_TIMESTAMP),
+      ('DEN-20251109133030-9D23A4F3', 'Menores trabalhando em condições insalubres em oficina mecânica.', 'Rua da Liberdade, 75, Liberdade, São Paulo, SP, 01503-000', 'Rua da Liberdade', 'Liberdade', 'São Paulo', 'SP', '01503-000', -23.556457, -46.629516, 'EM_ANDAMENTO', 'ALTA', CURRENT_TIMESTAMP),
+      ('DEN-20251109133100-B9F1F568', 'Meninos trabalhando no semáforo vendendo produtos, gerando risco à segurança.', 'Avenida Rio Branco, 234, Centro, Fortaleza, CE, 60000-000', 'Avenida Rio Branco', 'Centro', 'Fortaleza', 'CE', '60000-000', -3.717220, -38.543703, 'EM_ANDAMENTO', 'MEDIA', CURRENT_TIMESTAMP),
+      ('DEN-20251109133130-C3D4B46D', 'Crianças trabalhando na construção civil sem equipamento de segurança.', 'Rua Padre Ildefonso, 110, Bairro dos Trabalhadores, Belo Horizonte, MG, 30180-080', 'Rua Padre Ildefonso', 'Bairro dos Trabalhadores', 'Belo Horizonte', 'MG', '30180-080', -19.917597, -43.934595, 'CONCLUIDA', 'ALTA', CURRENT_TIMESTAMP);
+
 
 
 -- Inserção de imagens para denúncia 1
